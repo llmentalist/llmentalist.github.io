@@ -1,9 +1,9 @@
-___
+---
 title: "A Long Journey: From the jQuery to LLMs" 
 date: 2025-07-01
 layout: layout.njk
 tags: post
-___
+---
 # A Long Journey: From the jQuery to LLMs
 ## Or, Why the Fundamentals Matter More Than Ever 
 Let’s cut through the hype. A lot of the chatter around LLMs acts like they’re just another layer of abstraction, like a compiler or interpreter, hiding complexity. But here’s the truth: LLMs aren’t abstractions. They’re automations. And they need a developer who _gets_ the problem, the data, and the edge cases _even more_ than a compiler or interpreter does.  
