@@ -3,7 +3,7 @@ title: Home
 layout: layout.njk
 ---
 
-<h1>Welcome to your 11ty Blog!</h1>
+<h1>👋 Hi, I'm Wan Ching!  This is my blog! 📝</h1>
 <ul>
 {%- for post in collections.post -%}
   <li>
