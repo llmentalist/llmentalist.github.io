@@ -1,1 +1,1 @@
-# llmentallist.github.io
+# llmentalist.github.io

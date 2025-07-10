@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "11ty Blog" }}</title>
+</head>
+<body>
+  <header>
+    <img src="/avatar.png" alt="Site avatar" style="width:64px;height:64px;border-radius:50%;margin:1em auto;display:block;" />
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    <p>&copy; 2025 Wan Ching</p>
+  </footer>
+</body>
+</html>

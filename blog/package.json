@@ -1,0 +1,22 @@
+{
+  "name": "11ty-blog",
+  "version": "1.0.0",
+  "description": "A simple Eleventy (11ty) static site.",
+  "main": ".eleventy.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "static site"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4"
+  },
+  "type": "module"
+}

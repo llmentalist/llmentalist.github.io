@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "11ty: serve",
+      "type": "shell",
+      "command": "npx @11ty/eleventy --serve",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "11ty: build",
+      "type": "shell",
+      "command": "npx @11ty/eleventy",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
