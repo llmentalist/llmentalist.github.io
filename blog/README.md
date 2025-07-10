@@ -1,6 +1,10 @@
-# 11ty (Eleventy) Static Site
+# Wan's Blog
 
-This is a basic Eleventy (11ty) static site project scaffolded for you.
+Welcome to my personal blog! This site is built with Eleventy (11ty) and is where I share my thoughts, projects, and explorations.
+
+## About
+
+You'll mostly find posts about technology, like programming, tools, and ideas that inspire me. Occasionally, I may also write about sculpture, painting, or other creative pursuits.
 
 ## Getting Started
 
@@ -23,3 +27,7 @@ This is a basic Eleventy (11ty) static site project scaffolded for you.
 - `_site/`: Output folder (auto-generated)
 
 For more info, see [11ty documentation](https://www.11ty.dev/docs/).
+
+---
+
+_Note: These instructions are mostly for my own benefit, in case I forget how to run or build the site. If you find them useful too, that's a bonus!_ 😺
