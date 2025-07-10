@@ -99,14 +99,18 @@
     a {
       text-decoration: none !important;
       transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
     }
     a:hover, a:focus {
       text-decoration: none !important;
-      color: #e75480 !important; /* pinkish */
+      color: #495057 !important; /* gray for hover/focus */
     }
     @media (prefers-color-scheme: dark) {
-      a:hover, a:focus {
+      a {
         color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
       }
     }
   </style>
