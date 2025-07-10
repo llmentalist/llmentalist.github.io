@@ -4,7 +4,7 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   eleventyConfig.addCollection("posts", function (collection) {
-    return collection.getFilteredByGlob("posts/**/*.md").sort((a, b) => Math.sign(new Date(b.data.date) - new Date(a.data.date)));
+    return collection.getFilteredByGlob("posts/**/*.md").sort((a, b) => Math.sign(new Date(a.data.date) - new Date(b.data.date)));
   });
 
   eleventyConfig.addPlugin(syntaxHighlight);
