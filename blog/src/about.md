@@ -15,4 +15,4 @@ LLMs are powerful, and with thoughtful use, they can be a force for creativity, 
 
 ---
 
-Want to know more or chat? Feel free to reach out or check out my [GitHub](https://github.com/llmentalist)!
+Want to know more or chat? Feel free to reach out on [Bluesky](https://bsky.app/profile/llmentalist.bsky.social) or check out my [GitHub](https://github.com/llmentalist)!
