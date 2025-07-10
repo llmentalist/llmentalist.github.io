@@ -107,7 +107,7 @@
         <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
       </nav>
     </header>
-    {% if not page.filePath or 'posts/' not in page.filePath %}
+    {% if page.url == '/' or page.url == '/about/' %}
     <div class="about-block" aria-label="About Wan Ching">
       <img src="/assets/selfie.png" alt="Wan Ching selfie" style="width:96px;height:96px;object-fit:cover;border-radius:50%;margin-bottom:1rem;border:3px solid #8ab4f8;background:#fff;" />
       <h4>Wan Ching</h4>
