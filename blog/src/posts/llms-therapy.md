@@ -7,7 +7,7 @@ tags: post
 
 # **The Illusion of Friendship: Why LLMs Shouldn't Be Your Therapist**  
 
-Hey there! Today, I want to chat about something that’s been on my mind for a while: using large language models (LLMs) as a form of therapy. It’s a tempting idea. After all, LLMs can chat, listen, and even offer advice. But here’s the thing: I don’t think this is a great idea. Not because LLMs are bad, but because they’re not _you_. They’re not your friend. They’re tools. And while treating them like a friend can make interactions feel more rewarding, that doesn’t mean they’re actually intelligent. Let’s unpack this.
+Hey there! Today, I want to chat about something that’s been on my mind for a while: using large language models (LLMs) as a form of therapy. It’s a tempting idea. After all, LLMs can chat, listen, and even offer advice. But here’s the thing: I don’t think this is a great idea. Not because LLMs are bad, but because they’re not _you_. They’re not your friend. They’re tools. And while treating them like a friend can make interactions feel more rewarding, and can even lead to better results, that doesn’t mean they’re actually intelligent. Let’s unpack this.
 
 ---
 
