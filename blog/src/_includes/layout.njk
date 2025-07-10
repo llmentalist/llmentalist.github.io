@@ -96,6 +96,19 @@
         background: #22304a;
       }
     }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #e75480 !important; /* pinkish */
+    }
+    @media (prefers-color-scheme: dark) {
+      a:hover, a:focus {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+    }
   </style>
 </head>
 <body class="bg-light">
@@ -103,7 +116,7 @@
     <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
       <div class="d-flex align-items-center">
         <img src="/avatar.png" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" />
-        <span class="fs-4 fw-bold">LLMentalist</span>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
       </div>
       <nav>
         <a href="/" class="btn btn-outline-primary">Home</a>
