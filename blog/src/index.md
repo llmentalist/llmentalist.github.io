@@ -3,7 +3,7 @@ title: Home
 layout: layout.njk
 ---
 
-<h1>👋 Hi, I'm Wan Ching! ✨ This is my blog! 📝</h1>
+<h1>👋 Hi ✨ Welcome to the LLMentalist! 📝</h1>
 <div class="post-list">
 {%- for post in collections.post -%}
   <div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
