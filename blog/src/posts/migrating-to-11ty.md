@@ -4,16 +4,14 @@ date: 2025-07-09
 layout: layout.njk
 tags: post
 ---
-
-
-**Migrating from Obsidian to 11ty**  
+# Migrating from Obsidian to 11ty
 
 For quite some time, I've been wanting to turn my Obsidian notes into blog posts. The idea of transforming those markdown files into a live site felt like a natural next step—and I thought it would be easy, after all, it's all markdown! But as with most things, the journey had its twists. Here’s how I navigated the challenges and why I’m now loving 11ty.  
 
 ---
 
 ### **The LLM’s Template Confusion**  
-The first hurdle was getting the LLM to understand 11y’s templating. I’d trained it on markdown and basic templating syntax, but it initially suggested Handlebars or Jinja syntax instead of Nunjucks. For example, it would propose `{{#if}}` blocks instead of the correct ` {% if condition %}` syntax.  
+The first hurdle was getting the LLM to understand 11y’s templating. I’d trained it on markdown and basic templating syntax, but it initially suggested Handlebars or Jinja syntax instead of Nunjucks.
 
 I had to manually adjust the templates, ensuring all tags matched Nunjucks’ expectations. It was a bit of a headache, but once I confirmed the syntax, the LLM became a reliable helper for generating dynamic content. It only took one or two nudges to get it working correctly. No external documentation needed! Except when I had to look up how to make images work. nd I still haven't gotten it to work with separate CSS files. 🫢
 
