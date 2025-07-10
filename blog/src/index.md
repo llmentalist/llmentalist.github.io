@@ -12,5 +12,3 @@ layout: layout.njk
   </li>
 {%- endfor -%}
 </ul>
-
-<p>This is your homepage. Edit <code>src/index.md</code> to update this content.</p>

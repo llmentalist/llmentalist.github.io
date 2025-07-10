@@ -5,6 +5,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("posts", function (collection) {
     return collection.getFilteredByGlob("posts/**/*.md");
   });
+
+
+  eleventyConfig.addPassthroughCopy("styles.css");
+
+
   // Add any custom configuration here
   eleventyConfig.addFilter("firstParagraph", function(content) {
     if (!content) return "";
