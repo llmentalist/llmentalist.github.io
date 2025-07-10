@@ -1,4 +1,5 @@
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function (eleventyConfig) {
   eleventyConfig.addPlugin(eleventyImageTransformPlugin);
@@ -6,9 +7,8 @@ export default function (eleventyConfig) {
     return collection.getFilteredByGlob("posts/**/*.md");
   });
 
-
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPassthroughCopy("styles.css");
-
 
   // Add any custom configuration here
   eleventyConfig.addFilter("firstParagraph", function(content) {
