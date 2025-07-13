@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>Creating an AI Assistant with Python: A Simple Guide</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+              <h1>Creating an AI Assistant with Python: A Simple Guide</h1>
+              <p class="text-muted"><em>Mon Jul 07 2025 00:00:00 GMT+0000 (Coordinated Universal Time)</em></p>
+            
+            <h2>What Is an AI Agent?</h2>
+<p>Imagine you're building a <strong>virtual assistant</strong> that can help you with tasks like summarizing text or brainstorming ideas. This guide shows you how to create a simple AI agent that works with a <strong>large language model (LLM)</strong> like GPT to perform these tasks.</p>
+<p>The agent acts like a bridge between you and the AI: it asks the AI to pick a specific action, then runs that action when the AI chooses.</p>
+<hr>
+<blockquote>
+<p><strong>Note:</strong> This example uses the OpenAI API for simplicity, but the same principles apply if you use a locally run language model (such as Llama.cpp, Ollama, or other open-source LLMs). With the right Python client, you can swap out the API call and still get the same core functionality, often with similar results and more control over your data and costs.</p>
+</blockquote>
+<hr>
+<h2>Step 1: Define the Commands the AI Can Use</h2>
+<p>The AI needs to know exactly what it can do. Start by listing the <strong>commands</strong> (like &quot;summarize&quot; or &quot;generate ideas&quot;) and what they do.</p>
+<p><strong>Example Commands:</strong></p>
+<ul>
+<li><strong>summarize</strong>: Generate a short summary of text.</li>
+<li><strong>generate_ideas</strong>: Come up with creative ideas.</li>
+<li><strong>backup_database</strong>: Back up the production database (use with caution).</li>
+<li><strong>exit</strong>: End the conversation.</li>
+</ul>
+<hr>
+<p>This methodology, where the AI is limited to a small, explicit set of actions and must choose from them, is absolutely necessary for sensitive functions like database backups. By requiring the AI to select only from pre-approved commands, you reduce the risk of accidental or unauthorized operations, and can add extra safeguards (like confirmation prompts or logging) for high-impact actions.</p>
+<pre class="language-python"><code class="language-python"><span class="token comment"># Step 1: Define the commands</span>
+commands <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"summarize"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Summarize the text you provide"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"generate_ideas"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Propose creative ideas based on your input"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"backup_database"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Back up the production database (use with caution)"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"exit"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"End the conversation"</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre>
+<p><strong>Why This Matters:</strong>
+By limiting the AI to a few clear commands, you avoid confusion and ensure it knows what to do.</p>
+<hr>
+<h2>Step 2: Link Commands to Real Actions</h2>
+<p>Now, connect each command to a <strong>function</strong> that actually does something. For example, the &quot;summarize&quot; command runs a function that cuts text into a short summary.</p>
+<pre class="language-python"><code class="language-python"><span class="token comment"># Step 2: Define functions for each command</span>
+<span class="token keyword">def</span> <span class="token function">summarize_text</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Summary: "</span> <span class="token operator">+</span> text<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"..."</span>
+
+<span class="token keyword">def</span> <span class="token function">generate_ideas</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Ideas: 1. "</span> <span class="token operator">+</span> prompt <span class="token operator">+</span> <span class="token string">" 2. "</span> <span class="token operator">+</span> prompt <span class="token operator">+</span> <span class="token string">" 3. "</span> <span class="token operator">+</span> prompt
+
+<span class="token keyword">def</span> <span class="token function">backup_database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># WARNING: This is a placeholder for a sensitive operation.</span>
+    <span class="token comment"># In a real system, this should require extra confirmation and logging.</span>
+    <span class="token keyword">return</span> <span class="token string">"Database backup started! (Simulated)"</span>
+
+<span class="token keyword">def</span> <span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Goodbye!"</span></code></pre>
+<p><strong>Pro Tip:</strong>
+Avoid using <code>eval()</code> for math operations. Instead, use safe logic or external libraries if needed.</p>
+<hr>
+<h2>Step 3: Ask the AI to Choose a Command</h2>
+<p>The AI needs to pick one command. If it's unsure, the agent asks for clarification.</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> openai
+<span class="token keyword">import</span> os
+
+<span class="token comment"># Step 3: Ask the AI to pick a command</span>
+<span class="token keyword">def</span> <span class="token function">get_ai_choice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    prompt <span class="token operator">=</span> <span class="token string">"Choose one of these actions:\n"</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>
+        <span class="token string-interpolation"><span class="token string">f"- </span><span class="token interpolation"><span class="token punctuation">{</span>cmd<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>cmd<span class="token punctuation">[</span><span class="token string">'description'</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">"</span></span> <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands
+    <span class="token punctuation">)</span>
+    openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+            model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+            messages<span class="token operator">=</span><span class="token punctuation">[</span>
+                <span class="token punctuation">{</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"You are an assistant that must choose one valid command name from a list."</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> prompt<span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">)</span>
+        ai_reply <span class="token operator">=</span> response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>message<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token builtin">any</span><span class="token punctuation">(</span>cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token keyword">in</span> ai_reply <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> ai_reply
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"LLM response unclear. Asking again."</span><span class="token punctuation">)</span></code></pre>
+<p><strong>How It Works:</strong>
+The agent keeps asking the AI until it picks a command. If the AI says something like &quot;do math,&quot; the agent clarifies by listing the available commands.</p>
+<hr>
+<h2>Step 4: Run the Chosen Action</h2>
+<p>Once the AI picks a command, the agent runs the corresponding function.</p>
+<pre class="language-python"><code class="language-python"><span class="token comment"># Step 4: Execute the chosen action</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_input <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Your request: "</span><span class="token punctuation">)</span>
+    chosen_command <span class="token operator">=</span> get_ai_choice<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+    <span class="token comment"># Find the function to run</span>
+    <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token keyword">in</span> chosen_command<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"summarize"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> summarize_text<span class="token punctuation">(</span>user_input<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"generate_ideas"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> generate_ideas<span class="token punctuation">(</span>user_input<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"backup_database"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> backup_database<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+  
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Invalid command. Exiting."</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<hr>
+<h2>Putting It All Together</h2>
+<p>Here’s the full code in one place:</p>
+<pre class="language-python"><code class="language-python"><span class="token keyword">import</span> openai
+<span class="token keyword">import</span> os
+
+<span class="token comment"># Step 1: Define the commands</span>
+commands <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"summarize"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Summarize the text you provide"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"generate_ideas"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Propose creative ideas based on your input"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"backup_database"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"Back up the production database (use with caution)"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"exit"</span><span class="token punctuation">,</span> <span class="token string">"description"</span><span class="token punctuation">:</span> <span class="token string">"End the conversation"</span><span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment"># Step 2: Define functions for each command</span>
+<span class="token keyword">def</span> <span class="token function">summarize_text</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Summary: "</span> <span class="token operator">+</span> text<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"..."</span>
+
+<span class="token keyword">def</span> <span class="token function">generate_ideas</span><span class="token punctuation">(</span>prompt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Ideas: 1. "</span> <span class="token operator">+</span> prompt <span class="token operator">+</span> <span class="token string">" 2. "</span> <span class="token operator">+</span> prompt <span class="token operator">+</span> <span class="token string">" 3. "</span> <span class="token operator">+</span> prompt
+
+<span class="token keyword">def</span> <span class="token function">backup_database</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># WARNING: This is a placeholder for a sensitive operation.</span>
+    <span class="token comment"># In a real system, this should require extra confirmation and logging.</span>
+    <span class="token keyword">return</span> <span class="token string">"Database backup started! (Simulated)"</span>
+
+<span class="token keyword">def</span> <span class="token function">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">"Goodbye!"</span>
+
+<span class="token comment"># Step 3: Ask the AI to pick a command</span>
+<span class="token keyword">def</span> <span class="token function">get_ai_choice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    prompt <span class="token operator">=</span> <span class="token string">"Choose one of these actions:\n"</span> <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>
+        <span class="token string-interpolation"><span class="token string">f"- </span><span class="token interpolation"><span class="token punctuation">{</span>cmd<span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">: </span><span class="token interpolation"><span class="token punctuation">{</span>cmd<span class="token punctuation">[</span><span class="token string">'description'</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span><span class="token string">"</span></span> <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands
+    <span class="token punctuation">)</span>
+    openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> os<span class="token punctuation">.</span>getenv<span class="token punctuation">(</span><span class="token string">"OPENAI_API_KEY"</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+            model<span class="token operator">=</span><span class="token string">"gpt-3.5-turbo"</span><span class="token punctuation">,</span>
+            messages<span class="token operator">=</span><span class="token punctuation">[</span>
+                <span class="token punctuation">{</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"system"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> <span class="token string">"You are an assistant that must choose one valid command name from a list."</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token punctuation">{</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> prompt<span class="token punctuation">}</span>
+            <span class="token punctuation">]</span>
+        <span class="token punctuation">)</span>
+        ai_reply <span class="token operator">=</span> response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>message<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token builtin">any</span><span class="token punctuation">(</span>cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token keyword">in</span> ai_reply <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> ai_reply
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"LLM response unclear. Asking again."</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Step 4: Execute the chosen action</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    user_input <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Your request: "</span><span class="token punctuation">)</span>
+    chosen_command <span class="token operator">=</span> get_ai_choice<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+    <span class="token comment"># Find the function to run</span>
+    <span class="token keyword">for</span> cmd <span class="token keyword">in</span> commands<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token keyword">in</span> chosen_command<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"summarize"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> summarize_text<span class="token punctuation">(</span>user_input<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"generate_ideas"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> generate_ideas<span class="token punctuation">(</span>user_input<span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"backup_database"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> backup_database<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">elif</span> cmd<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"exit"</span><span class="token punctuation">:</span>
+                result <span class="token operator">=</span> exit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+  
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Invalid command. Exiting."</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<hr>
+<h2>Building Bridges: The Power of Simple AI Design</h2>
+<p>This approach isn’t about building complex systems or chasing cutting-edge features—it’s about creating tools that_serve_ people. By focusing on clarity, structure, and intentional design, you empower the AI to act as a thoughtful partner rather than a wildcard.</p>
+<p>The beauty of this method lies in its adaptability. Whether you’re automating workflows, sparking creativity, or solving niche problems, the same principles apply: define clear goals, link them to actionable steps, and let the AI guide the process. The result is a system that feels intuitive, secure, and deeply human.</p>
+<p>Remember, the goal isn’t to replace judgment but to_amplify_ it. A well-designed AI agent should feel like a trusted collaborator—one that helps you think faster, work smarter, and turn ideas into impact.</p>
+<p>So go forth and build something that doesn’t just work, but <em>feels right</em>. The world is full of problems waiting for your touch. 🌟</p>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+    </footer>
+  </div>
+  </body>
+</html>

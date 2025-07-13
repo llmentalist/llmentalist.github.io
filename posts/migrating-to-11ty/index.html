@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>Migrating from Obsidian to 11ty</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+              <h1>Migrating from Obsidian to 11ty</h1>
+              <p class="text-muted"><em>Wed Jul 09 2025 00:00:00 GMT+0000 (Coordinated Universal Time)</em></p>
+            
+            <h1>Migrating from Obsidian to 11ty</h1>
+<p>For quite some time, I've been wanting to turn my Obsidian notes into blog posts. The idea of transforming those markdown files into a live site felt like a natural next step, and I thought it would be easy, after all, it's all markdown! But as with most things, the journey had its twists. Here’s how I navigated the challenges and why I’m now loving 11ty.</p>
+<hr>
+<h3><strong>The LLM’s Template Confusion</strong></h3>
+<p>The first hurdle was getting the LLM to understand 11y’s templating. I’d trained it on markdown and basic templating syntax, but it initially suggested Handlebars or Jinja syntax instead of Nunjucks.</p>
+<p>I had to manually adjust the templates, ensuring all tags matched Nunjucks’ expectations. It was a bit of a headache, but once I confirmed the syntax, the LLM became a reliable helper for generating dynamic content. It only took one or two nudges to get it working correctly. No external documentation needed! Except when I had to look up how to make images work. nd I still haven't gotten it to work with separate CSS files. 🫢</p>
+<hr>
+<h3><strong>The Luxon Dilemma</strong></h3>
+<p>Next, I ran into an issue with Luxon, the date library 11ty uses. The LLM suggested using it for formatting dates, but the build kept failing with errors about incorrect method calls. I realized the problem was a version mismatch: my Node.js version was too old to support the Luxon version I had installed.</p>
+<p>Switching to Node.js 24 fixed the issue. It was a minor fix, but it taught me to always check dependencies’ compatibility. Sometimes, the LLM can’t see the forest for the trees, especially when it comes to environment constraints.</p>
+<hr>
+<h3><strong>Why I’m Hooked on 11ty</strong></h3>
+<p>11ty’s simplicity and flexibility have won me over. It’s lightweight, fast, and adaptable; perfect for someone who wants to focus on content over infrastructure. Plus, the ability to sync Obsidian notes into a live site is a dream.</p>
+<p>I’m already thinking about building a tool to automate this process. Imagine a script that pulls markdown files from Obsidian, converts them to 11ty-compatible templates, and pushes them to a repo. It would save hours of manual work and keep my content fresh.</p>
+<hr>
+<h3><strong>The Road Ahead</strong></h3>
+<p>This project has been a reminder that LLMs are tools, not magic. They can help, but understanding the underlying systems is still key. With 11ty, I’ve found a balance between automation and control; a perfect fit for my workflow.</p>
+<p>I’m excited to explore how Obsidian and 11ty can work together. Maybe one day, I’ll have a sync tool that makes this process effortless. Until then, I’ll keep building, learning, and enjoying the ride.</p>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+    </footer>
+  </div>
+  </body>
+</html>

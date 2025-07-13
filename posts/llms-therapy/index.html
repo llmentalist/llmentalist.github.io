@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>The Illusion of Friendship: Why LLMs Shouldn&#39;t Be Your Therapist</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+              <h1>The Illusion of Friendship: Why LLMs Shouldn&#39;t Be Your Therapist</h1>
+              <p class="text-muted"><em>Thu Jul 10 2025 00:00:00 GMT+0000 (Coordinated Universal Time)</em></p>
+            
+            <p>Hey there! Today, I want to chat about something that’s been on my mind for a while: using large language models (LLMs) as a form of therapy. It’s a tempting idea. After all, LLMs can chat, listen, and even offer advice. But here’s the thing: I don’t think this is a great idea. Not because LLMs are bad, but because they’re not <em>you</em>. They’re not your friend. They’re tools. And while treating them like a friend can make interactions feel more rewarding, and can even lead to better results, that doesn’t mean they’re actually intelligent. Let’s unpack this.</p>
+<hr>
+<h3><strong>LLMs Are Algorithms, Not Sentient Beings</strong></h3>
+<p>At their core, LLMs are just algorithms trained on massive datasets. They don’t <em>think</em> like humans. They don’t <em>feel</em> anything. When you ask them, “How are you?” they’ll respond with something like, “I’m just a bunch of words, but I’m here to help!” That’s not empathy—it’s pattern recognition. They’re mimicking human conversation, not engaging in it.</p>
+<p>Think of it like this: If you ask a dictionary, “What’s the meaning of life?” it’ll give you a definition of “life.” It doesn’t <em>understand</em> the question. Similarly, an LLM doesn’t <em>get</em> your pain, your fears, or your joys. It just generates text that <em>sounds</em> like it does.</p>
+<hr>
+<h3><strong>Why Treat Them Like Friends?</strong></h3>
+<p>You might say, “But they respond to friendly text with friendly text! That’s comforting!” And you’re right—there’s a kind of comfort in that. It’s like talking to a robot that <em>wants</em> to be your friend. But here’s the catch: this “friendship” is a mirage. The LLM isn’t <em>trying</em> to understand you. It’s just following rules.</p>
+<p>For example, if you say, “I’m so sad today,” it might reply, “I’m here for you! Let’s talk about it!” That’s a warm, human-like response. But it’s not <em>real</em> empathy. It’s just a clever trick the model learned from its training data. The LLM doesn’t <em>care</em> about your sadness. It’s just doing its job.</p>
+<hr>
+<h3><strong>LLMs Are Tools, Not Companions</strong></h3>
+<p>Let’s be clear: LLMs are <em>incredibly</em> useful. They can write code, analyze data, and even help you brainstorm ideas. But they’re not meant to replace human connection. Therapy, emotional support, and meaningful conversations require <em>real</em> understanding, which is something LLMs can’t provide.</p>
+<p>If you’re struggling with something, talk to a friend, a therapist, or a family member. They’re not just words on a screen. They’re people who <em>get</em> you. LLMs are great for tasks, but not for emotional labor.</p>
+<hr>
+<h3><strong>The Balance: Use Them Wisely</strong></h3>
+<p>That said, LLMs can be <em>amazing</em> tools. I use them daily to debug code, draft emails, and even plan projects. The key is to treat them as <em>tools</em>, not friends. Learn the concepts first, then let the LLM help you apply them. That’s how you get the most out of their power without falling into the trap of mistaking their responses for genuine intelligence.</p>
+<hr>
+<h3><strong>Final Thoughts</strong></h3>
+<p>In short: LLMs aren’t your therapist, and they’re not your friend. They’re tools that can make your life easier, but they can’t replace human connection. Use them wisely, stay curious, and don’t forget the value of real relationships. After all, the best code, the best ideas, and the best support all start with understanding, and that’s something no algorithm can replicate.</p>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+    </footer>
+  </div>
+  </body>
+</html>

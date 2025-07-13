@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>Home</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <div class="about-block" aria-label="About Wan Ching">
+      <picture><source type="image/webp" srcset="/img/a77-wA4tEh-1024.webp 1024w"><img src="/img/a77-wA4tEh-1024.jpeg" alt="Wan Ching selfie" style="width:96px;height:96px;object-fit:cover;border-radius:50%;margin-bottom:1rem;border:3px solid #8ab4f8;background:#fff;" width="1024" height="1536"></picture>
+      <h4>Wan Ching</h4>
+      <p>👋 Hi! I'm Wan Ching. I love building things with code, learning new tech, and sharing my journey. I currently live in the beautiful PNW.</p>
+    </div>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+            <h1>👋 Hi ✨ Welcome to the LLMentalist! 📝</h1>
+<div class="post-list"><div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
+    <h3><a href="/posts/micro-llms/">Running Micro LLMs on Laptops: A Developer’s Guide to Local AI</a></h3>
+    <p></p><p>Hey there! If you’ve ever wondered how to bring the power of AI to your laptop without relying on the cloud, you’re in the right place. Micro LLMs are small, efficient language models, and are the perfect tool for this. Let’s dive into how to run them on your machine, why it matters, and what you can build.</p>
+<p>Micro LLMs are like the pocket-sized versions of the massive models you’ve heard about, like Llama 3 or Mistral. They’re designed to run on modest hardware, which makes them ideal f. . .</p>
+  </div><div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
+    <h3><a href="/posts/llms-therapy/">The Illusion of Friendship: Why LLMs Shouldn&#39;t Be Your Therapist</a></h3>
+    <p></p><p>Hey there! Today, I want to chat about something that’s been on my mind for a while: using large language models (LLMs) as a form of therapy. It’s a tempting idea. After all, LLMs can chat, listen, and even offer advice. But here’s the thing: I don’t think this is a great idea. Not because LLMs are bad, but because they’re not <em>you</em>. They’re not your friend. They’re tools. And while treating them like a friend can make interactions feel more rewarding, and can even lead to better resul. . .</p>
+  </div><div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
+    <h3><a href="/posts/migrating-to-11ty/">Migrating from Obsidian to 11ty</a></h3>
+    <p></p><p>For quite some time, I've been wanting to turn my Obsidian notes into blog posts. The idea of transforming those markdown files into a live site felt like a natural next step, and I thought it would be easy, after all, it's all markdown! But as with most things, the journey had its twists. Here’s how I navigated the challenges and why I’m now loving 11ty.</p>
+<p>The first hurdle was getting the LLM to understand 11y’s templating. I’d trained it on markdown and basic templating syntax, but it . . .</p>
+  </div><div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
+    <h3><a href="/posts/llm_tools/">Creating an AI Assistant with Python: A Simple Guide</a></h3>
+    <p></p><p>Imagine you're building a <strong>virtual assistant</strong> that can help you with tasks like summarizing text or brainstorming ideas. This guide shows you how to create a simple AI agent that works with a <strong>large language model (LLM)</strong> like GPT to perform these tasks.</p>
+<p>The agent acts like a bridge between you and the AI: it asks the AI to pick a specific action, then runs that action when the AI chooses.</p>
+<p><strong>Note:</strong> This example uses the OpenAI API for s. . .</p>
+  </div><div class="mb-4 post-preview p-3 rounded shadow-sm bg-white">
+    <h3><a href="/posts/learning-and-llms/">A Long Journey: From the jQuery to LLMs</a></h3>
+    <p></p><p>Let’s cut through the hype. A lot of the chatter around LLMs acts like they’re just another layer of abstraction, like a compiler or interpreter, hiding complexity. But here’s the truth: LLMs aren’t abstractions. They’re automations. And they need a developer who <em>gets</em> the problem, the data, and the edge cases <em>even more</em> than a compiler or interpreter does.</p>
+<p>Think of it this way: a compiler translates code into machine language, but it doesn’t <em>understand</em> what th. . .</p>
+  </div></div>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+    </footer>
+  </div>
+  </body>
+</html>

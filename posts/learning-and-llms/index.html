@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>A Long Journey: From the jQuery to LLMs</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+              <h1>A Long Journey: From the jQuery to LLMs</h1>
+              <p class="text-muted"><em>Tue Jul 01 2025 00:00:00 GMT+0000 (Coordinated Universal Time)</em></p>
+            
+            <h2>Or, Why the Fundamentals Matter More Than Ever</h2>
+<p>Let’s cut through the hype. A lot of the chatter around LLMs acts like they’re just another layer of abstraction, like a compiler or interpreter, hiding complexity. But here’s the truth: LLMs aren’t abstractions. They’re automations. And they need a developer who <em>gets</em> the problem, the data, and the edge cases <em>even more</em> than a compiler or interpreter does.</p>
+<p>Think of it this way: a compiler translates code into machine language, but it doesn’t <em>understand</em> what the code is trying to achieve. An LLM doesn’t just translate—it <em>generates</em> a solution. But if you hand it a messy dataset or a vague prompt, it’ll spit out code that works… or code that <em>almost</em> works. The difference? A developer who knows how to ask the right questions.</p>
+<p>LLMs are tools, not magic. They amplify your skills, but they don’t replace the need to <em>think</em> through the problem. That’s where the real power lies.</p>
+<h2><strong>The 2010s: The Rise of Modern Web Development</strong></h2>
+<p>I started programming in 2012 (At the ripe old age of eight! My dad was learning it so he taught me too), when JavaScript was becoming the backbone of the web. Frameworks like React and Node.js were still in their infancy, and mobile development tools like React Native were just gaining traction. This era felt like a golden age of experimentation. There were no “best practices,” just a lot of trial and error.</p>
+<h3><strong>Early Experiences: JavaScript and the Web</strong></h3>
+<p>I wrote my first &quot;Hello, World!&quot; in JavaScript, embedding it in an HTML file. The web was clunky. Pages would lag, and browsers had limited support for dynamic content. But it felt magical. I learned to build static pages with HTML and CSS, then moved into dynamic apps using jQuery. By 2015, I was diving into React, where I built a simple to-do list app.</p>
+<p><strong>Example:</strong> The app used vanilla JavaScript to manage state, manipulated the DOM with <code>document.getElementById</code>, and stored tasks in a global array. It wasn’t elegant, but it taught me the value of separation of concerns and how to avoid “spaghetti code.”</p>
+<h3><strong>The Shift to Mobile and Modern Tools</strong></h3>
+<p>By 2016, I began experimenting with React Native. I built a weather app that fetched data from an API and displayed it on both iOS. The cross-platform approach saved time, but I quickly realized the limitations of JavaScript for native UI. That’s when I started learning TypeScript, which helped me catch type errors and write more maintainable code.</p>
+<p><strong>Key Takeaway:</strong> The 2010s were a time of rapid change. Frameworks evolved quickly, but the core principles, like problem-solving, debugging, and understanding data flow, remained constant.</p>
+<h2><strong>The 2020s: Embracing LLMs and Modern Practices</strong></h2>
+<p>In 2022, I started exploring LLMs like GPT-3. I was skeptical at first: would they replace the years of hard work I’d invested? But I quickly realized they were a <strong>tool</strong>, not a shortcut.</p>
+<h3><strong>How I Use LLMs Today</strong></h3>
+<ul>
+<li><strong>Code Generation:</strong> I use LLMs to draft boilerplate code, like API endpoints or database migrations. For example, I once asked for a Python script to parse CSV files, and the model generated a script that worked with minimal tweaks.</li>
+<li><strong>Debugging:</strong> They help me spot syntax errors or suggest alternative approaches. Once, I asked for help debugging a Flask app that wasn’t handling POST requests correctly. The model pointed out a missing <code>request.get_json()</code> call.</li>
+<li><strong>Learning:</strong> I ask them to explain complex concepts. When I struggled with SQL joins, I asked for a simple analogy: “Imagine two tables as two spreadsheets. A JOIN is like combining them by matching rows.”</li>
+</ul>
+<p><strong>Catch:</strong> I always double-check the output. LLMs can generate code that’s syntactically correct but logically flawed. For example, a model-generated Python script once used <code>==</code> to compare strings instead of <code>is</code>, causing unexpected behavior. My years of hands-on coding let me catch those mistakes.</p>
+<h2><strong>Why Fundamentals Still Matter</strong></h2>
+<p>LLMs are amazing, but they’re not infallible. They can’t explain <em>why</em> a <code>JOIN</code> is necessary in SQL or <em>why</em> a <code>try/catch</code> block is essential in Python.</p>
+<h3><strong>A Case Study: Building a Web App</strong></h3>
+<p>In 2023, I built a blog app using Flask and PostgreSQL. The LLM helped me structure the database schema and write queries, but I had to <em>understand</em> the relationships between tables to avoid data inconsistencies. For example, when designing a <code>Post</code> and <code>User</code> table, I needed to ensure the <code>Post</code> table had a foreign key to the <code>User</code> table. Without that foundational knowledge, the LLM’s suggestions would have led to a fragile system.</p>
+<h2><strong>The Balance: Learn First, Then Optimize</strong></h2>
+<p>My philosophy hasn’t changed: <strong>Learn the fundamentals first, then use LLMs to enhance your work.</strong></p>
+<ul>
+<li><strong>Master the basics</strong> (Python, SQL, algorithms) before relying on tools.</li>
+<li><strong>Use LLMs to accelerate</strong> tasks, but never let them replace your understanding.</li>
+<li><strong>Stay curious</strong>—LLMs are just one tool in a growing toolkit.</li>
+</ul>
+<h2><strong>Final Thoughts</strong></h2>
+<p>Programming has always been about problem-solving. LLMs are a new chapter in that story, but they’re not the end of the journey. My early days with JavaScript taught me that the web is a layered system. LLMs are just another layer—powerful, but not a shortcut.</p>
+<p>So, while I’ve been coding since the 2010s, I’m excited to see how LLMs will shape the future. But I’ll always remember: the foundation matters. 🌟</p>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+    </footer>
+  </div>
+  </body>
+</html>
