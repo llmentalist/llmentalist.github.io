@@ -3,6 +3,8 @@ title: "Running Micro LLMs on Laptops: A Developer’s Guide to Local AI"
 date: 2025-07-12
 tags:
   - post
+layout: layout.njk
+
 ---
 Hey there! If you’ve ever wondered how to bring the power of AI to your laptop without relying on the cloud, you’re in the right place. Micro LLMs are small, efficient language models, and are the perfect tool for this. Let’s dive into how to run them on your machine, why it matters, and what you can build.
 
