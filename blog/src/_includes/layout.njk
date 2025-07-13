@@ -136,7 +136,20 @@
     </div>
     {% endif %}
     <main class="container my-5 bg-white p-4 rounded shadow-sm">
-      {{ content | safe }}
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            {% if tags and 'post' in tags %}
+              <h1>{{ title }}</h1>
+              <p class="text-muted"><em>{{ date | readableDate }}</em></p>
+            {% endif %}
+            {{ content | safe }}
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
     </main>
     <footer class="container text-center py-3">
       <p class="text-muted small">&copy; 2025 Wan Ching</p> <hr/> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
