@@ -5,7 +5,7 @@ layout: layout.njk
 tags: post
 ---
 
-## What Is an AI Agent?  
+## What Is an AI Agent?
 Imagine you're building a **virtual assistant** that can help you with tasks like summarizing text or brainstorming ideas. This guide shows you how to create a simple AI agent that works with a **large language model (LLM)** like GPT to perform these tasks.
 
 The agent acts like a bridge between you and the AI: it asks the AI to pick a specific action, then runs that action when the AI chooses.
@@ -16,10 +16,10 @@ The agent acts like a bridge between you and the AI: it asks the AI to pick a sp
 
 ---
 
-## Step 1: Define the Commands the AI Can Use  
+## Step 1: Define the Commands the AI Can Use
 The AI needs to know exactly what it can do. Start by listing the **commands** (like "summarize" or "generate ideas") and what they do.
 
-**Example Commands:**  
+**Example Commands:**
 - **summarize**: Generate a short summary of text.
 - **generate_ideas**: Come up with creative ideas.
 - **backup_database**: Back up the production database (use with caution).
@@ -39,12 +39,12 @@ commands = [
 ]
 ```
 
-**Why This Matters:**  
+**Why This Matters:**
 By limiting the AI to a few clear commands, you avoid confusion and ensure it knows what to do.
 
 ---
 
-## Step 2: Link Commands to Real Actions  
+## Step 2: Link Commands to Real Actions
 Now, connect each command to a **function** that actually does something. For example, the "summarize" command runs a function that cuts text into a short summary.
 
 ```python
@@ -64,12 +64,12 @@ def exit():
     return "Goodbye!"
 ```
 
-**Pro Tip:**  
+**Pro Tip:**
 Avoid using `eval()` for math operations. Instead, use safe logic or external libraries if needed.
 
 ---
 
-## Step 3: Ask the AI to Choose a Command  
+## Step 3: Ask the AI to Choose a Command
 The AI needs to pick one command. If it's unsure, the agent asks for clarification.
 
 ```python
@@ -97,12 +97,12 @@ def get_ai_choice():
             print("LLM response unclear. Asking again.")
 ```
 
-**How It Works:**  
+**How It Works:**
 The agent keeps asking the AI until it picks a command. If the AI says something like "do math," the agent clarifies by listing the available commands.
 
 ---
 
-## Step 4: Run the Chosen Action  
+## Step 4: Run the Chosen Action
 Once the AI picks a command, the agent runs the corresponding function.
 
 ```python
@@ -110,7 +110,7 @@ Once the AI picks a command, the agent runs the corresponding function.
 def main():
     user_input = input("Your request: ")
     chosen_command = get_ai_choice()
-    
+  
     # Find the function to run
     for cmd in commands:
         if cmd["name"] in chosen_command.lower():
@@ -124,7 +124,7 @@ def main():
                 result = exit()
             print(result)
             return
-    
+  
     print("Invalid command. Exiting.")
 
 if __name__ == "__main__":
@@ -133,8 +133,8 @@ if __name__ == "__main__":
 
 ---
 
-## Putting It All Together  
-Here’s the full code in one place:  
+## Putting It All Together
+Here’s the full code in one place:
 
 ```python
 import openai
@@ -187,7 +187,7 @@ def get_ai_choice():
 def main():
     user_input = input("Your request: ")
     chosen_command = get_ai_choice()
-    
+  
     # Find the function to run
     for cmd in commands:
         if cmd["name"] in chosen_command.lower():
@@ -201,7 +201,7 @@ def main():
                 result = exit()
             print(result)
             return
-    
+  
     print("Invalid command. Exiting.")
 
 if __name__ == "__main__":
@@ -211,7 +211,7 @@ if __name__ == "__main__":
 ---
 
 
-## Building Bridges: The Power of Simple AI Design  
+## Building Bridges: The Power of Simple AI Design
 
 This approach isn’t about building complex systems or chasing cutting-edge features—it’s about creating tools that_serve_ people. By focusing on clarity, structure, and intentional design, you empower the AI to act as a thoughtful partner rather than a wildcard.
 
