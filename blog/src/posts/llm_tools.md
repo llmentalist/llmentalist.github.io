@@ -5,10 +5,6 @@ layout: layout.njk
 tags: post
 ---
 
-# Creating an AI Assistant with Python: A Simple Guide  
-
----
-
 ## What Is an AI Agent?  
 Imagine you're building a **virtual assistant** that can help you with tasks like summarizing text or brainstorming ideas. This guide shows you how to create a simple AI agent that works with a **large language model (LLM)** like GPT to perform these tasks.
 
