@@ -6,8 +6,6 @@ tags:
 layout: layout.njk
 ---
 
-# Building Agentic Workflows for Local LLMs
-
 *Coding agents and automation that run on your hardware. No cloud required.*
 
 ---

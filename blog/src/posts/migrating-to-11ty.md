@@ -4,7 +4,6 @@ date: 2025-07-09
 layout: layout.njk
 tags: post
 ---
-# Migrating from Obsidian to 11ty
 
 For quite some time, I've been wanting to turn my Obsidian notes into blog posts. The idea of transforming those markdown files into a live site felt like a natural next step, and I thought it would be easy, after all, it's all markdown! But as with most things, the journey had its twists. Here’s how I navigated the challenges and why I’m now loving 11ty.
 

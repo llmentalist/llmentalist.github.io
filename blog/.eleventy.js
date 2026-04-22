@@ -11,6 +11,10 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
 
   // Add any custom configuration here
+  eleventyConfig.addFilter("readableDate", function(dateObj) {
+    return new Date(dateObj).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  });
+
   eleventyConfig.addFilter("firstParagraph", function(content) {
     if (!content) return "";
     const text = content.split("\n").filter(line => line.trim().startsWith("<p>")).join("\n");

@@ -6,8 +6,6 @@ tags:
 layout: layout.njk
 ---
 
-# I Started Turning Off Claude
-
 *and the infrastructure got faster*
 
 ---
