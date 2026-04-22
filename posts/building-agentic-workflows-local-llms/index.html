@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="fediverse:creator" content="@llmentalist@mastodon.social">
+  <title>Building Agentic Workflows for Local LLMs</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
+  <style>
+    /* Limit page width and center content */
+    .page-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', 'Arial', sans-serif;
+    }
+    /* Light mode (default) */
+    body {
+      background-color: #f8f9fa;
+      color: #222;
+    }
+    .bg-white {
+      background-color: #fff !important;
+    }
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #16213e !important; /* deep blue */
+        color: #f1f3f4 !important;
+      }
+      .bg-white,
+      .container,
+      .page-container,
+      .rounded,
+      .shadow-sm {
+        background-color: #1a2747 !important; /* slightly lighter blue */
+        color: #f1f3f4 !important;
+        box-shadow: none !important;
+      }
+      .btn-outline-primary,
+      a.btn-outline-primary {
+        color: #8ab4f8 !important;
+        border-color: #8ab4f8 !important;
+        background-color: transparent !important;
+      }
+      .btn-outline-primary:hover,
+      a.btn-outline-primary:hover {
+        background-color: #8ab4f8 !important;
+        color: #181a1b !important;
+        border-color: #8ab4f8 !important;
+      }
+      a {
+        color: #8ab4f8 !important;
+      }
+      a:hover {
+        color: #a3d3ff !important;
+      }
+      .text-muted {
+        color: #b0b0b0 !important;
+      }
+      .bg-light {
+        background-color: #181a1b !important;
+      }
+    }
+    main {
+      padding: 3rem;
+      padding-top: 0.25rem;
+    }
+    @media (max-width: 900px) {
+      .sidebar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+    .main-content {
+      min-width: 0;
+    }
+    .about-block {
+      background: #eaf4fc;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      padding: 2rem 1rem 1rem 1rem;
+      margin: 2rem auto 2rem auto;
+      max-width: 340px;
+      text-align: center;
+    }
+    @media (prefers-color-scheme: dark) {
+      .about-block {
+        background: #22304a;
+      }
+    }
+    a {
+      text-decoration: none !important;
+      transition: color 0.2s;
+      color: #e75480 !important; /* pinkish default */
+    }
+    a:hover, a:focus {
+      text-decoration: none !important;
+      color: #495057 !important; /* gray for hover/focus */
+    }
+    @media (prefers-color-scheme: dark) {
+      a {
+        color: #ff8abf !important; /* lighter pink for dark mode */
+      }
+      a:hover, a:focus {
+        color: #b0b0b0 !important; /* gray for dark mode hover/focus */
+      }
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="page-container">
+    <header class="container py-4 d-flex flex-row align-items-center justify-content-between">
+      <div class="d-flex align-items-center">
+        <picture><source type="image/webp" srcset="/img/lWPfAu_kXY-512.webp 512w"><img src="/img/lWPfAu_kXY-512.jpeg" alt="Site avatar" class="rounded-circle mb-0 me-3" style="width:64px;height:64px;" width="512" height="512"></picture>
+        <a href="/" class="fs-4 fw-bold text-decoration-none" style="line-height:1;">LLMentalist</a>
+      </div>
+      <nav>
+        <a href="/" class="btn btn-outline-primary">Home</a>
+        <a href="/about/" class="btn btn-outline-secondary ms-2">About</a>
+      </nav>
+    </header>
+    
+    <main class="container my-5 bg-white p-4 rounded shadow-sm">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-content">
+            
+              <h1>Building Agentic Workflows for Local LLMs</h1>
+              <p class="text-muted"><em>April 10, 2026</em></p>
+            
+            <p><em>Coding agents and automation that run on your hardware. No cloud required.</em></p>
+<hr>
+<p>Hey there! I've been running local LLMs for a while now—you know, the usual: text generation, summarization, that kind of thing. But lately I've been pushing into something different: building <em>agentic</em> workflows. Not just chat. Not just one-shot prompts. I mean actual coding agents and automation workflows that operate on my machine, touching files, running commands, managing infrastructure.</p>
+<p>All local. No API keys. No rate limits. No data leaving my machine.</p>
+<p>If you've been using local models for basic tasks and wondering what the next level looks like, or if you're curious about building AI that actually <em>does</em> things on your behalf, this is it. Let's dive in.</p>
+<hr>
+<h2><strong>The Frame: This Isn't Learning, It's Engineering</strong></h2>
+<p>Here's the thing people get wrong about agentic AI: they think the model needs to &quot;learn&quot; or &quot;remember&quot; things across sessions. But that's not how this works. The AI doesn't learn. The <em>environment</em> it operates in can grow.</p>
+<p>When I say &quot;agentic workflows,&quot; I mean AI that writes code, debugs errors, manages infrastructure, edits files, and executes commands—not just answers questions. Think less &quot;chatbot&quot; and more &quot;autonomous coding assistant.&quot;</p>
+<p>You're not teaching the model—you're building systems that externalize state so the model doesn't need to be stateful.</p>
+<p>The limitation isn't intelligence. It's statefulness. And here's the fix: don't fight the statelessness, engineer around it.</p>
+<p>And here's what makes this exciting: <strong>you don't need frontier models for this.</strong> You need focused, local models with good tooling. Build the environment right, and a 7B model running on your laptop will outperform Claude Sonnet 4.6 or o3 on your specific tasks.</p>
+<hr>
+<h2><strong>Why Local Models for Agentic Workflows?</strong></h2>
+<p>Cloud services are convenient until they're not. API costs pile up. Rate limits hit you mid-task. Latency adds friction. Your data goes through someone else's servers. You're dependent on external infrastructure.</p>
+<p>For simple LLM tasks? Maybe that's fine. But when you're building coding agents that need to iterate on files, run tests, manage deployments, debug production issues—that round-trip latency and API dependency becomes a real problem.</p>
+<p>I've been consulting with companies trying to reduce their cloud AI bills, and the pattern is consistent: teams start with cloud APIs, costs spiral as usage grows, and suddenly &quot;AI-assisted development&quot; becomes a line item that finance questions every quarter.</p>
+<p>But there's another issue that's been getting worse: <strong>reliability</strong>. AI companies have trash uptime. GitHub—which has an Enterprise Cloud SLA promising 99.9% uptime—dropped below 90% at one point in 2025. Ninety percent. That's 876 hours of potential downtime per year. Nearly 37 days offline annually.</p>
+<p>In February 2026 alone, GitHub had 37 incidents. Actions went down. Copilot went down. Pull requests stopped working. Notifications delayed for hours. And this is <em>GitHub</em>—a company Microsoft owns, running on Azure infrastructure.</p>
+<p>And it's not just GitHub. Anthropic had API outages in early 2026. OpenAI's had them. Every cloud AI provider has had them. I'm not picking on anyone—it's systemic to cloud infrastructure. When your coding agent is blocked mid-task waiting for an API that's down, it doesn't matter which company's API it is.</p>
+<p>API costs, rate limits, reliability anxiety, data leaving your machine. Gone when you run locally.</p>
+<p>When your coding agent depends on a cloud API that goes down mid-task, you're just… stuck. Waiting. Your local tools keep working. Your local models keep running.</p>
+<p>But more importantly: <strong>you control the stack.</strong> You can tune the model for your domain. You can guarantee response time. You can build tools that integrate directly with your system instead of bridging through API abstractions.</p>
+<p>The trade-off is simple: you invest time building the environment once, and you get reliability forever.</p>
+<p>Plus, there's something deeply satisfying about running AI entirely on hardware you own. It feels more like real computing, you know?</p>
+<hr>
+<h2><strong>The Problem: Context Compaction Destroys Planning</strong></h2>
+<p>After 3-4 turns, any LLM—cloud or local—has compressed earlier context. Plans fall apart. You end up re-explaining the same architectural decisions over and over. The AI regenerates solutions instead of building incrementally.</p>
+<p>This is worse on smaller models with shorter context windows. You feel it faster.</p>
+<p>But here's the key insight: <strong>this is a fundamental limitation.</strong> Design around it, don't prompt around it.</p>
+<p>No amount of clever prompting will fix statefulness. You need to externalize the state itself.</p>
+<hr>
+<h2><strong>The Solution: Three Layers of Externalized State</strong></h2>
+<h3><strong>1. Grounding (Tools)</strong></h3>
+<p>Not just abstraction—grounding in <em>reality</em>. When your local model calls <code>esxi_vm_list</code> and gets back live state, it's not reasoning from stale context or guessing. The tool result anchors it to current reality.</p>
+<p>That's categorically different from &quot;remembering&quot; the VM list from 20 turns ago.</p>
+<p><strong>Local advantage:</strong> Your tools run on your machine. No API latency. No serialization overhead. Direct filesystem access, direct database queries, direct subprocess calls. The model and the tools share the same environment. It's <em>fast</em>.</p>
+<h3><strong>2. Persistent Memory</strong></h3>
+<p>This is a layer between config files and AI working memory. Memory files let knowledge accumulate across sessions without re-explanation.</p>
+<p>Session 1 discovers the vault password. Session 2 finds it in memory. The AI doesn't learn—but the environment grows.</p>
+<p><strong>Local advantage:</strong> Memory is just files on disk. No privacy concerns. No vendor lock-in. Version control with git. Backup with rsync. It's yours.</p>
+<p>I keep mine in plain markdown files. Simple, readable, greppable. No databases, no complexity.</p>
+<h3><strong>3. Reusable Tooling</strong></h3>
+<p>Scripts, libraries, CLI tools. Encode operations so the AI doesn't have to hold API shapes in context.</p>
+<p><strong>Local advantage:</strong> You're not bridging between your local environment and a cloud API. The model runs where your tools run. Integration is direct.</p>
+<hr>
+<h2><strong>Model Selection for Agentic Work</strong></h2>
+<p><strong>You don't need 70B.</strong> You need focused 7B-13B models fine-tuned for tool use.</p>
+<p>Good candidates I've tested:</p>
+<ul>
+<li><strong>Mistral 7B Instruct</strong> (solid tool calling, fast on consumer GPUs)</li>
+<li><strong>Llama 3.2 3B</strong> (surprisingly capable, runs on CPU)</li>
+<li><strong>Qwen 2.5 Coder</strong> (excellent for code-heavy workflows)</li>
+<li><strong>Phi-3 Mini</strong> (tiny, fast, good for repetitive tasks)</li>
+</ul>
+<p>Quantize to Q4 or Q5. You lose almost nothing for agentic tasks and gain massive speed improvements.</p>
+<p><strong>Hardware reality:</strong> RTX 3050, 4060, used Tesla cards from eBay—all fine. Even CPU-only works if you accept the latency. Mid-range laptop? 16GB RAM? You're good.</p>
+<p>I run most of my experiments on a 4060. It's not fancy, but it gets the job done.</p>
+<hr>
+<h2><strong>The Quiet Ones vs. The Loud Ones</strong></h2>
+<p>Here's something I've noticed: you don't see a lot of people talking about using local LLMs for agentic coding workflows. What you <em>do</em> see is people complaining that it doesn't work as well as cloud solutions.</p>
+<p>And they're right! Out of the box, a local 7B model won't match Claude Code. Claude Code shows a clear intention to excellence. The infrastructure is all there: tool loop, file handling, context management, error recovery. The intention is right. It bundles a lot of what you'd have to build yourself for local models, and it does so thoughtfully.</p>
+<p>It's completely understandable to look at Claude Code working out of the box and say, &quot;Why would I bother with the local setup?&quot;</p>
+<p>But here's the thing: <strong>the people who are successfully using local LLMs for this work aren't complaining about it.</strong> They're quietly shipping. They're content with their cost savings over cloud providers. They understand how the technologies work—not deeply, just enough to grok the basics—and they're applying that knowledge to solve their problems.</p>
+<p>You don't need a PhD in machine learning. You don't need to understand attention mechanisms or transformer architecture. You just need to understand:</p>
+<ul>
+<li>How the model receives context</li>
+<li>How tool calling works at a basic level</li>
+<li>How to externalize state so the model doesn't have to hold it</li>
+<li>How to debug when things go wrong</li>
+</ul>
+<p>That's it. That's the barrier to entry.</p>
+<p>The loud complaints come from people trying to use local models the same way they use cloud APIs—as a drop-in replacement with zero architectural changes. That doesn't work. The quiet productivity comes from people who understand the limitations and build around them.</p>
+<p>It's a knowledge gap, not a capability gap.</p>
+<hr>
+<h2><strong>Building Your Own Agentic Flow</strong></h2>
+<h3><strong>Don't Use Cursor Pointed at Ollama</strong></h3>
+<p>Look, I know the appeal. Cursor, Windsurf, Cline—they're all great tools. In early 2026, we've got Cursor with multi-file Composer mode, Windsurf shipping 5 parallel agents, Cline running as a free VS Code extension. They're powerful.</p>
+<p>But if you're just pointing them at Ollama, you're still in the &quot;chat with AI&quot; paradigm. You're swapping one API for another. Without owning the tool loop, you're not externalizing state—you're just routing prompts differently.</p>
+<p><strong>Build the loop yourself:</strong></p>
+<ol>
+<li>Write the tool functions you need</li>
+<li>Generate tool schemas (JSON or function signatures)</li>
+<li>Run the model with tool definitions</li>
+<li>Parse tool calls from model output</li>
+<li>Execute tools, return results</li>
+<li>Continue conversation with tool results</li>
+</ol>
+<p>Use llama.cpp Python bindings, Ollama's API, or LangChain if you must—but understand the loop. Own it.</p>
+<p>This is where you actually learn how the system works. Don't abstract it away before you understand it.</p>
+<h3><strong>Build Tooling In-Context</strong></h3>
+<p>Build the tool while you're in the context that motivates it. Don't treat it as a separate investment.</p>
+<p>The cost is low because you're already there. The payoff compounds. Session 1's throwaway script becomes Session 2's foundation.</p>
+<h3><strong>Externalize Knowledge</strong></h3>
+<p>Don't rely on the AI to &quot;remember.&quot; Put it in:</p>
+<ul>
+<li><strong>Tool functions</strong> (live grounding)</li>
+<li><strong>Memory files</strong> (cross-session persistence)</li>
+<li><strong>Config files</strong> (static knowledge)</li>
+<li><strong>CLI wrappers</strong> (reusable operations)</li>
+</ul>
+<p>This is the entire system. It's not complicated. It's just disciplined.</p>
+<hr>
+<h2><strong>What Local Models Actually Do</strong></h2>
+<p>The real value: <strong>translating intent at arbitrary abstraction levels into code.</strong></p>
+<p>Not typing speed. The model takes high-level intent and generates correct implementation without holding every detail in working memory—<em>if</em> you've externalized the details into tools, config, and memory.</p>
+<p>Smaller models are worse at this than frontier models. But with good tooling, a 7B model on your laptop will beat Claude Sonnet 4.6 or o3 on your specific workflow because:</p>
+<ul>
+<li>Lower latency (local inference)</li>
+<li>Better context (your tools are built for your domain)</li>
+<li>No API failures</li>
+<li>No rate limits</li>
+<li>No data leaving your machine</li>
+</ul>
+<p><strong>Good at:</strong></p>
+<ul>
+<li>Translating intent to code</li>
+<li>Applying known patterns</li>
+<li>Working with well-defined abstractions</li>
+</ul>
+<p><strong>Bad at:</strong></p>
+<ul>
+<li>Multi-step plans across turns</li>
+<li>Stateful reasoning</li>
+<li>Operating from stale context</li>
+</ul>
+<p>Accept the limitations. Design around them.</p>
+<hr>
+<h2><strong>The Workflow</strong></h2>
+<ol>
+<li>Identify patterns in AI interactions</li>
+<li>Build tools/abstractions for those patterns <em>while in that context</em></li>
+<li>Use AI at higher level of abstraction</li>
+<li>Iterate</li>
+</ol>
+<p>The difference between good and bad agentic coding: <strong>the one doing it well is building systems that build systems so that they can eventually make the thing they want.</strong></p>
+<p>It's turtles all the way down, but each turtle is a stable platform.</p>
+<hr>
+<h2><strong>Case Study: oVirt, Then ESXi</strong></h2>
+<p>A client needed VM lifecycle automation. They were running oVirt—open-source, reasonable API, not a lot of tooling love in the ecosystem. I built it myself.</p>
+<p><strong>A note on MCP servers:</strong> There's an MCP server for this. I looked at it. When things break you want to own the error handling, not debug someone else's abstraction. Build it yourself.</p>
+<p>The build went like this: started with inline Python—every operation was 20 lines, re-authing each time, hardcoded to specific hosts. Fine for one-off tasks. Terrible for an agent. So I extracted it to a CLI (<code>bin/ovirt</code>): same logic, just callable. Validated it with <code>vm list</code>, <code>vm status</code>. Then added tool schemas on top—operation functions were identical, just wrapped in JSON-RPC. About 60 lines of new code. Did a pass to remove hardcoded assumptions: cluster names, datastore paths, port. That took longer than the MCP wrapper.</p>
+<p>The CLI was free. We needed those operations anyway. The agent surface cost almost nothing because the hard part was already done.</p>
+<p>Six months later, same client. They were migrating to ESXi.</p>
+<p>I sat down expecting the same effort. It wasn't. The vSphere API is different from oVirt's—different auth, different resource model, different endpoint shapes. But the <em>operations</em> were the same: list VMs, start, stop, snapshot, get status. I wrote a new API client (<code>bin/esxi</code>), swapped it in, and the tool schemas transferred almost unchanged. Done in an afternoon.</p>
+<p>I didn't design the oVirt tooling to be reusable. I didn't set out to prove anything about abstractions. The second project just told me the first was good.</p>
+<p>That's the signal. If substituting the platform is mechanical, the abstraction is real—the operations are genuinely separate from the API client. If it's painful, something bled through. You didn't find the right seam.</p>
+<p>Building with an agent accelerates this feedback loop. You're forced to articulate the pattern clearly enough that the agent can execute it. That articulation pressure is the same thing that makes abstractions substitutable. You can't stay vague—the agent needs an actual interface. So good AI-assisted tooling and good abstractions end up being the same requirement, almost by accident.</p>
+<hr>
+<h2><strong>Bottom Line</strong></h2>
+<p>Tools over weights. This isn't LLM-specific—it's just good engineering.</p>
+<p>Solid findings end up as tools, not tribal knowledge. Good architecture reduces cognitive load—for humans and AI.</p>
+<p>You're not prompting the AI to be smarter. You're engineering systems that let it work effectively within its limitations.</p>
+<p>And you're doing it locally, on hardware you control, with models you can modify, without cloud dependencies.</p>
+<p>That's sustainable. That's how you build something that lasts.</p>
+<hr>
+<p><em>Want to chat about local LLM workflows or share your own experiments? Hit me up on <a href="https://bsky.app/profile/llmentalist.bsky.social">Bluesky</a> or <a href="https://mastodon.social/@llmentalist">Mastodon</a>! I'd love to hear what you're building.</em> ✨</p>
+
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- Sidebar content can go here -->
+        </div>
+      </div>
+    </main>
+    <footer class="container text-center py-3">
+      <p class="text-muted small">&copy; 2026 Wan Ching</p> <hr> <p><a href="/about/">About</a> &mdash; <a href="https://github.com/llmentalist" target="_blank" rel="noopener">GitHub</a> &mdash; <a href="https://bsky.app/profile/llmentalist.bsky.social" target="_blank" rel="noopener">Bluesky</a> &mdash; <a rel="me" href="https://mastodon.social/@llmentalist">Mastodon</a></p>
+      <p class="text-muted small"><em>The text on this site is generated by an AI for the purposes of translation only.</em></p>
+    </footer>
+  </div>
+  </body>
+</html>
